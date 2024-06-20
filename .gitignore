@@ -1,0 +1,10 @@
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+__pycache__
+*.code-workspace
+.vscode/
+__pycache__/
+
+wandb/
+figures/
+results/
