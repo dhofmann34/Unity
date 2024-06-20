@@ -6,20 +6,20 @@ The code in this repository was developed using Python 3.9.12. [`requirements.tx
 
 | flag         | purpose                                              | allowed values                                                                         |
 | ------------ | ---------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `--lr_co_teaching`  | peer networks learning rate                             | `simple`, `ntrees`, `nrects`, `compare`, `k`, `m`, `nconstraints`, `perturb`, `robust` |
-| `--lr_contrastive`  | embedding network learning rate                     | space separated list of values e.g. `10 50 100` or `0.1 0.2 0.3`                       |
-| `--hidden_dim`      | hidden dim for peer networks                               | cancer, glass, magic, spambase, vertebral                                              |
-| `--label_noise`     | initial noisy label generator                                | `FACETIndex`, `OCEAN`, `RFOCSE`, `AFT`, `MACE`                                         |
-| `--momentum`        | momentum for all optimizers                             | integer value, overridden in for `--expr` `ntrees`                                     |
-| `--batch_size`      | batch size for training                      | integer value, `-1` for no max depth                                                   |
-| `--col_name_labels` | the iteration to run, used as random seed            | space separated integer values                                                         |
-| `--w_b`             | a filename modifier append to append to results file | string value                                                                           |
-| `--strategy`        | the underlying mode to explain                       | `rf` or `gbc`                                                                          |
-| `--dataset`         | the underlying mode to explain                       | `rf` or `gbc`                                                                          |
-| `--method`          | the underlying mode to explain                       | `rf` or `gbc`                                                                          |
-| `--seed`            | the underlying mode to explain                       | `rf` or `gbc`                                                                          |
-| `--epochs_warmup`   | the underlying mode to explain                       | `rf` or `gbc`                                                                          |
-| `--beta`            | the underlying mode to explain                       | `rf` or `gbc`                                                                          |
-| `--alpha`           | the underlying mode to explain                       | `rf` or `gbc`                                                                          |
-| `--batch_norm`      | the underlying mode to explain                       | `rf` or `gbc`                                                                          |
-| `--experiment`      | the underlying mode to explain                       | `rf` or `gbc`                                                                          |
+| `--lr_co_teaching`  | peer networks learning rate                                     | `simple`, `ntrees`, `nrects`, `compare`, `k`, `m`, `nconstraints`, `perturb`, `robust` |
+| `--lr_contrastive`  | embedding network learning rate                                 | space separated list of values e.g. `10 50 100` or `0.1 0.2 0.3`                       |
+| `--hidden_dim`      | hidden dim for peer networks                                    | cancer, glass, magic, spambase, vertebral                                              |
+| `--label_noise`     | initial noisy label generator                                   | `FACETIndex`, `OCEAN`, `RFOCSE`, `AFT`, `MACE`                                         |
+| `--momentum`        | momentum for all optimizers                                     | integer value, overridden in for `--expr` `ntrees`                                     |
+| `--batch_size`      | batch size for training                                         | integer value, `-1` for no max depth                                                   |
+| `--col_name_labels` | name of column in dataset with GT labels                        | space separated integer values                                                         |
+| `--w_b`             | run Unity with w&b                                              | string value                                                                           |
+| `--strategy`        | for SOTA methods, controls how sample selection should proceed  | `rf` or `gbc`                                                                          |
+| `--dataset`         | dataset to run                                                  | `rf` or `gbc`                                                                          |
+| `--method`          | the method to run                                               | `rf` or `gbc`                                                                          |
+| `--seed`            | the seed to run                                                 | `rf` or `gbc`                                                                          |
+| `--epochs_warmup`   | the number of epochs to warm up with                            | `rf` or `gbc`                                                                          |
+| `--beta`            | trade-off between historical data and newer data for EMA        | `rf` or `gbc`                                                                          |
+| `--alpha`           | trade-off between loss and similarity score or confidence score | `rf` or `gbc`                                                                          |
+| `--batch_norm`      | batchnorm layers for the peer networks                          | `rf` or `gbc`                                                                          |
+| `--experiment`      | the experiment to run                                           | `rf` or `gbc`                                                                          |
