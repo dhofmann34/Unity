@@ -8,3 +8,4 @@ __pycache__/
 wandb/
 figures/
 results/
+results/results_0.ipynb
