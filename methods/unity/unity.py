@@ -208,8 +208,13 @@ class Trainer():
         '''        
         if self.args.experiment == "no_threshold":
             num_samples_select = int(len(sampling_score) * (1 - gt_noise_rate))
+            if num_samples_select == 0:
+                num_samples_select = 1
             sorted_scores, _ = torch.sort(sampling_score.view(-1))
-            threshold = sorted_scores[num_samples_select-1]  # select the num_samples_select with the smallest sampling scores
+            if len(sorted_scores) > 0:
+                threshold = sorted_scores[num_samples_select-1]  # select the num_samples_select with the smallest sampling scores
+            else:
+                threshold = 0
 
         else:
             if len(trimmed_sampling_score) > 1:
@@ -235,6 +240,8 @@ class Trainer():
         '''        
         if self.args.experiment == "no_threshold":
             num_samples_select = int(len(sampling_score) * (1 - gt_noise_rate))
+            if num_samples_select == 0:
+                num_samples_select = 1
             sorted_scores, _ = torch.sort(sampling_score.view(-1))
             threshold = sorted_scores[num_samples_select-1]  # select the num_samples_select with the smallest sampling scores
         
@@ -382,8 +389,8 @@ class Trainer():
                     scores_trimmed_outliers = sampling_score[combined_outlier_idx]
 
                 # adaptive threshold for how many samples to select as clean
-                sample_score_agreement_inliers_threshold = self.get_adaptive_threshold_agreement(scores_trimmed_inliers, 0.1, sampling_score[combined_inlier_idx])
-                sample_score_agreement_outliers_threshold = self.get_adaptive_threshold_agreement(scores_trimmed_outliers, 0.7, sampling_score[combined_outlier_idx])
+                sample_score_agreement_inliers_threshold = self.get_adaptive_threshold_agreement(scores_trimmed_inliers, noise_rate_inlier, sampling_score[combined_inlier_idx])
+                sample_score_agreement_outliers_threshold = self.get_adaptive_threshold_agreement(scores_trimmed_outliers, noise_rate_outlier, sampling_score[combined_outlier_idx])
                             
                 # select samples that are smaller than the threshold
                 similar_smallest_losses_inliers_idx = torch.nonzero(sampling_score[combined_inlier_idx] <= sample_score_agreement_inliers_threshold).flatten()
@@ -527,10 +534,10 @@ class Trainer():
                     scores_trimmed_outliers_model2 = large_conf_small_loss_score_model2_outlier
             
                 # adaptive threshold
-                large_conf_sample_score_model1_inlier_threshold = self.get_adaptive_threshold_disagreement(scores_trimmed_inliers_model1, 0.1, large_conf_small_loss_score_model1_inlier)
-                large_conf_sample_score_model1_outlier_threshold = self.get_adaptive_threshold_disagreement(scores_trimmed_outliers_model1, 0.7, large_conf_small_loss_score_model1_outlier)
-                large_conf_sample_score_model2_inlier_threshold = self.get_adaptive_threshold_disagreement(scores_trimmed_inliers_model2, 0.1, large_conf_small_loss_score_model2_inlier)
-                large_conf_sample_score_model2_outlier_threshold = self.get_adaptive_threshold_disagreement(scores_trimmed_outliers_model2, 0.7, large_conf_small_loss_score_model2_outlier)
+                large_conf_sample_score_model1_inlier_threshold = self.get_adaptive_threshold_disagreement(scores_trimmed_inliers_model1, noise_rate_inlier, large_conf_small_loss_score_model1_inlier)
+                large_conf_sample_score_model1_outlier_threshold = self.get_adaptive_threshold_disagreement(scores_trimmed_outliers_model1, noise_rate_outlier, large_conf_small_loss_score_model1_outlier)
+                large_conf_sample_score_model2_inlier_threshold = self.get_adaptive_threshold_disagreement(scores_trimmed_inliers_model2, noise_rate_inlier, large_conf_small_loss_score_model2_inlier)
+                large_conf_sample_score_model2_outlier_threshold = self.get_adaptive_threshold_disagreement(scores_trimmed_outliers_model2, noise_rate_outlier, large_conf_small_loss_score_model2_outlier)
 
                 # select samples that are smaller than the threshold
                 large_conf_sample_score_model1_inlier_idx = torch.nonzero(large_conf_small_loss_score_model1_inlier <= large_conf_sample_score_model1_inlier_threshold).flatten()

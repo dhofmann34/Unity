@@ -32,14 +32,14 @@ if __name__ == "__main__":
     parser.add_argument('--col_name_labels', default='label', type=str, help='dataset column name for labels')
     parser.add_argument('--w_b', default=0, type=int, help='w&b')
     parser.add_argument('--strategy', default="split", type=str, help='method')
-    parser.add_argument('--dataset', default="annthyroid", type=str, help='dataset')  
+    parser.add_argument('--dataset', default="wine", type=str, help='dataset')  
     parser.add_argument('--method', default="UNITY", type=str, help='method')
-    parser.add_argument('--seed', default=9, type=int,help='random seed')
+    parser.add_argument('--seed', default=10, type=int,help='random seed')
     parser.add_argument('--epochs_warmup', default=15, type=int, help='number of epochs to run warmup for (no sample selection)')
     parser.add_argument('--beta', default=0, type=float, help='controls how much weight should be given to historical data vs newer data for EMA')
     parser.add_argument('--alpha', default=0.5, type=float, help='tradeoff between loss and similarity score or confident score')
     parser.add_argument('--batch_norm', default="false", type=str, help='batch norm for the model')
-    parser.add_argument('--experiment', default="tsne", type=str, help='which experiment to run')
+    parser.add_argument('--experiment', default="no_threshold", type=str, help='which experiment to run')
     '''
     method: which method should be ran
         UNITY: Ours
