@@ -74,12 +74,12 @@ def run_autood_augment(args, train_data, test_data, X_train, y_train, X_test, y_
             self_agree_index_list = [int(i) for i in self_agree_index_list]
 
         all_outlier_indexes = np.union1d(all_outlier_indexes, self_agree_index_list)  # add empty set if outliers are in reliable set, else add self agree as well
-        if(len(np.setdiff1d(all_outlier_indexes, prediction_classifier_disagree)) != 0):  # DH: remove reliable only if set will not be 0
+        if(len(np.setdiff1d(all_outlier_indexes, prediction_classifier_disagree)) != 0):  # remove reliable only if set will not be 0
             all_outlier_indexes = np.setdiff1d(all_outlier_indexes, prediction_classifier_disagree) 
 
-        #### DH
+        
         self_agree_index_list_inlier = []
-        if ((len(all_inlier_indexes) == 0)):  # DH: requierments are relaxed 
+        if ((len(all_inlier_indexes) == 0)):  # requierments are relaxed 
             for i in range(0, len(index_range)):
                 if (index_range[i, 1] - index_range[i, 0] <= 6):
                     continue
@@ -101,7 +101,7 @@ def run_autood_augment(args, train_data, test_data, X_train, y_train, X_test, y_
                     min_score = np.average(scores_method)
                     index_method = counter
             all_inlier_indexes = np.union1d(all_inlier_indexes, index_method) 
-        #### DH
+        
 
         data_indexes = np.concatenate((all_inlier_indexes, all_outlier_indexes), axis=0)  # all reliable indices
         data_indexes = np.array([int(i) for i in data_indexes])
@@ -133,11 +133,11 @@ def run_autood_augment(args, train_data, test_data, X_train, y_train, X_test, y_
 
         prediction_list.append(np.array([int(i) for i in clf_predictions]))
 
-        prediction_high_conf_outliers = np.intersect1d(  # DH select high conf outliers
+        prediction_high_conf_outliers = np.intersect1d(  # select high conf outliers
             np.where(prediction_result_list[-1] > high_confidence_threshold)[0],  # results from logistic regression
             np.where(classifier_result_list[-1] > high_confidence_threshold)[0])  # results from SVM
 
-        prediction_high_conf_inliers = np.intersect1d(  # DH select high conf inliers
+        prediction_high_conf_inliers = np.intersect1d(  # select high conf inliers
             np.where(prediction_result_list[-1] < low_confidence_threshold)[0],
             np.where(classifier_result_list[-1] < low_confidence_threshold)[0])
 
@@ -197,7 +197,7 @@ def run_autood_augment(args, train_data, test_data, X_train, y_train, X_test, y_
                     coef_index_range = np.array(coef_index_range)
                     index_range = np.array(index_range)
 
-                    L = L[:, remain_indexes_after_cond_expanded]  # DH: here we are updating detectors
+                    L = L[:, remain_indexes_after_cond_expanded]  # here we are updating detectors
                     scores_for_training = scores_for_training[:, remain_indexes_after_cond]
 
         if ((len(last_training_data_indexes) == len(data_indexes)) and
@@ -343,7 +343,7 @@ def run_autood_augment(args, train_data, test_data, X_train, y_train, X_test, y_
         if(len(np.setdiff1d(all_outlier_indexes, prediction_classifier_disagree)) != 0):  # remove reliable only if set will not be 0
             all_outlier_indexes = np.setdiff1d(all_outlier_indexes, prediction_classifier_disagree)
         
-        #### DH
+        
         self_agree_index_list_inlier = []
         if ((len(all_inlier_indexes) == 0)):  # here is where requierments are relaxed 
             for i in range(0, len(index_range)):
@@ -368,7 +368,7 @@ def run_autood_augment(args, train_data, test_data, X_train, y_train, X_test, y_
                     min_score = np.average(scores_method)
                     index_method = counter
             all_inlier_indexes = np.union1d(all_inlier_indexes, index_method) 
-        #### DH
+        
 
         data_indexes = np.concatenate((all_inlier_indexes, all_outlier_indexes), axis=0)
         data_indexes = np.array([int(i) for i in data_indexes])
@@ -395,7 +395,7 @@ def run_autood_augment(args, train_data, test_data, X_train, y_train, X_test, y_
             print("#######################################################")
             print(f'Iteration = {i_range}, F-1 score = {metrics.f1_score(y, np.array([int(i) for i in clf_predict_proba_X > 0.5]))}')
             cur_f1_scores.append(metrics.f1_score(y, np.array([int(i) for i in clf_predict_proba_X > 0.5])))
-            #f1_at_iter(f"2_{i_range}", len(X_training_data), len(L[0]), len(all_inlier_indexes), len(all_outlier_indexes), metrics.f1_score(y, np.array([int(i) for i in clf_predict_proba_X > 0.5])))  # DH
+            #f1_at_iter(f"2_{i_range}", len(X_training_data), len(L[0]), len(all_inlier_indexes), len(all_outlier_indexes), metrics.f1_score(y, np.array([int(i) for i in clf_predict_proba_X > 0.5])))
         else:
             print(f"Iteration = {i_range}")
 
