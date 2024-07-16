@@ -7,5 +7,6 @@ __pycache__/
 
 wandb/
 figures/
-results/batch_files
+results/batch_files/
+results/final_results/
 results/results_0.ipynb
