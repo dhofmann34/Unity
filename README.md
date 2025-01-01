@@ -1,8 +1,8 @@
 # Agree to Disagree: Robust Anomaly Detection with Noisy Labels
-This repository contains the code for our paper Agree to Disagree: Robust Anomaly Detection with Noisy Labels that was accepted at SIGMOD 2025.
+This repository contains the code for our paper Agree to Disagree: Robust Anomaly Detection with Noisy Labels which was accepted at SIGMOD 2025.
 
 ## Running Unity
-The code in this repository was developed using Python 3.9.12 and was ran on an A100 GPU. [`requirements.txt`](./requirements.txt) contains a list of all the required packages and versions. To run our code run [main.py](./main.py) which takes in a variety of command line arguments to run different methods, experiments, and modify various parameters. The different arguments and their allowed values are shown below.
+The code in this repository was developed using Python 3.9.12 and was ran on an A100 GPU. [`requirements.txt`](./requirements.txt) contains a list of all the required packages and versions. To run our code, run [main.py](./main.py) which takes in a variety of command line arguments to run different methods, experiments, and modify various parameters. The different arguments and their allowed values are shown below.
 
 | flag         | purpose                                              | allowed values                                                                         |
 | ------------ | ---------------------------------------------------- | -------------------------------------------------------------------------------------- |
