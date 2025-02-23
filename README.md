@@ -5,6 +5,7 @@ This repository contains the code for our paper *[Agree to Disagree: Robust Anom
 Unity converts the unsupervised anomaly detection problem into a learning-from-noisy-labels problem. Given a dataset X and initial pseudo labels containing label noise (Ŷ), Unity elegantly combines clean sample selection and label refurbishment to iteratively curate a diverse set of clean samples for training. The figure below overviews each component of Unity.
 
 ### Unity Architecture:
+![Alt text](https://github.com/dhofmann34/Unity/blob/master/figures_paper/unity_architecture.png "Unity Architecture")
 
 ## Running Unity
 The code in this repository was developed using Python 3.9.12 and was ran on an A100 GPU. [`requirements.txt`](./requirements.txt) contains a list of all the required packages and versions. To run our code, run [main.py](./main.py) which takes in a variety of command line arguments to run different methods, datasets, experiments, and modify various parameters. The different arguments and their allowed values are shown below.
