@@ -1,8 +1,13 @@
 # Agree to Disagree: Robust Anomaly Detection with Noisy Labels
-This repository contains the code for our paper Agree to Disagree: Robust Anomaly Detection with Noisy Labels which was accepted at SIGMOD 2025.
+This repository contains the code for our paper *[Agree to Disagree: Robust Anomaly Detection with Noisy Labels](https://dl.acm.org/doi/10.1145/3709657)* which was accepted at SIGMOD 2025.
+
+## Unity Overview
+Unity converts the unsupervised anomaly detection problem into a learning-from-noisy-labels problem. Given a dataset X and initial pseudo labels containing label noise (Ŷ), Unity elegantly combines clean sample selection and label refurbishment to iteratively curate a diverse set of clean samples for training. The figure below overviews each component of Unity.
+
+### Unity Architecture:
 
 ## Running Unity
-The code in this repository was developed using Python 3.9.12 and was ran on an A100 GPU. [`requirements.txt`](./requirements.txt) contains a list of all the required packages and versions. To run our code, run [main.py](./main.py) which takes in a variety of command line arguments to run different methods, experiments, and modify various parameters. The different arguments and their allowed values are shown below.
+The code in this repository was developed using Python 3.9.12 and was ran on an A100 GPU. [`requirements.txt`](./requirements.txt) contains a list of all the required packages and versions. To run our code, run [main.py](./main.py) which takes in a variety of command line arguments to run different methods, datasets, experiments, and modify various parameters. The different arguments and their allowed values are shown below.
 
 | flag         | purpose                                              | allowed values                                                                         |
 | ------------ | ---------------------------------------------------- | -------------------------------------------------------------------------------------- |
@@ -23,3 +28,25 @@ The code in this repository was developed using Python 3.9.12 and was ran on an 
 | `--alpha`           | trade-off between loss and similarity score or confidence score | float value between 0 and 1                                                                                      |
 | `--batch_norm`      | batchnorm layers for the peer networks                          | `true` or `false`                                                                                                |
 | `--experiment`      | the experiment to run                                           | `unity`, `disagree_only`, `agree_only`, `agree_and_disagree`, `refurbishment_only`, `varying_noise_rate`, `complexity`, `no_threshold`, `tsne`   |
+
+## Citation
+Thank you for your interest in our work, please use the following citation when referencing Unity.
+
+```BibTeX
+@article{10.1145/3709657,
+author = {Hofmann, Dennis M. and VanNostrand, Peter M. and Ma, Lei and Zhang, Huayi and DeOliveira, Joshua C. and Cao, Lei and Rundensteiner, Elke A.},
+title = {Agree to Disagree: Robust Anomaly Detection with Noisy Labels},
+year = {2025},
+issue_date = {February 2025},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {3},
+number = {1},
+url = {https://doi.org/10.1145/3709657},
+doi = {10.1145/3709657},
+journal = {Proc. ACM Manag. Data},
+month = feb,
+articleno = {7},
+numpages = {24},
+}
+```
